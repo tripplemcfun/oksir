@@ -1,0 +1,85 @@
+import { motion } from "motion/react";
+import { Award, Book, GraduationCap } from "lucide-react";
+
+export default function Faculty() {
+  const faculty = [
+    {
+      name: "Mr. Jugendra Sharma",
+      specialty: "English & Geography Expert",
+      qualification: "MA Eng., Geography, B.Ed.",
+      description: "Dedicated educator with a focus on English language mastery and conceptual clarity in Geography. Committed to student excellence.",
+      icon: GraduationCap,
+      color: "bg-orange-100",
+      iconColor: "text-orange-600"
+    },
+    {
+      name: "Mr. Nitin Sharma",
+      specialty: "Biology & Science Expert",
+      qualification: "M.Sc. (Bio), B.Ed.",
+      description: "Expert in helping students visualize complex biological concepts and excel in Science subjects with years of experience.",
+      icon: Book,
+      color: "bg-blue-100",
+      iconColor: "text-blue-600"
+    }
+  ];
+
+  return (
+    <section id="faculty" className="py-24 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 space-y-4 md:space-y-0">
+          <div className="max-w-2xl">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-4xl md:text-5xl font-serif font-bold mb-4"
+            >
+              Meet Our Expert Faculty
+            </motion.h2>
+            <p className="text-gray-600">
+              Our teachers are passionate professionals committed to student success through innovative teaching methods.
+            </p>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="flex items-center space-x-2 text-brand-blue font-bold px-4 py-2 bg-white rounded-full border border-gray-200"
+          >
+            <Award className="w-5 h-5" />
+            <span>Certified Educators</span>
+          </motion.div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {faculty.map((member, index) => (
+            <motion.div
+              key={member.name}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.2 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-3xl p-8 flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8 shadow-sm hover:shadow-md transition-shadow border border-gray-100"
+            >
+              <div className={`${member.color} p-6 rounded-2xl flex-shrink-0`}>
+                <member.icon className={`w-12 h-12 ${member.iconColor}`} />
+              </div>
+              <div className="flex-1">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                  <h3 className="text-2xl font-serif font-bold text-gray-900">{member.name}</h3>
+                  <span className="text-xs font-bold bg-gray-100 px-2 py-1 rounded-md text-gray-600 mt-1 sm:mt-0 sm:ml-2">
+                    {member.qualification}
+                  </span>
+                </div>
+                <span className="block text-brand-blue font-semibold mb-4 text-sm tracking-wide uppercase">
+                  {member.specialty}
+                </span>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {member.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
